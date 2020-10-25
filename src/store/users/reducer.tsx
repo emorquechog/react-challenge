@@ -88,7 +88,7 @@ const userReducer = (
     case UsersActionType.DELETE_USER_SUCCESS: {
       const deleteUserIdx = state.info.findIndex((x) => x.id === action.id);
       const cloneState = state.info;
-      state.info.splice(deleteUserIdx, 1);
+      cloneState.splice(deleteUserIdx, 1);
       return {
         ...state,
         loading: false,
