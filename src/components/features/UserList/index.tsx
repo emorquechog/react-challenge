@@ -70,6 +70,7 @@ class UserList extends React.Component<IUserList, IUserState> {
             user={user}
             onClickEdit={() => this.handleEditDialog(user)}
             onClickDelete={() => onDeleteUser(user.id)}
+            key={user.id}
           />
         ))}
         <div className={styles.addButton}>
