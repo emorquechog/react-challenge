@@ -9,15 +9,7 @@ export interface IAppState {
   user: IUserState
 }
 
-export const mockStore = createStore(rootReducer)
-
 export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk.withExtraArgument(apiService)))
 )
-
-export const makeStore = () =>
-  createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk.withExtraArgument(apiService)))
-  )
