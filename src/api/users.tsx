@@ -1,4 +1,5 @@
-import axios, { AxiosPromise } from "axios";
+import { AxiosPromise } from "axios";
+import { axiosWrapper } from "./index";
 import { IUser } from "store/users/models";
 
 export interface IApiUsers {
@@ -10,15 +11,15 @@ export interface IApiUsers {
 }
 
 export default {
-  getUsers: () => axios.get("https://reqres.in/api/users"),
-  getUser: (id: number) => axios.get(`https://reqres.in/api/users?id=${id}`),
+  getUsers: () => axiosWrapper.get("/users"),
+  getUser: (id: number) => axiosWrapper.get(`/users?id=${id}`),
   updateUser: (user: IUser) =>
-    axios.put(`https://reqres.in/api/users/${user.id}`, {
+    axiosWrapper.put(`/users/${user.id}`, {
       user,
     }),
   createUser: (user: IUser) =>
-    axios.post(`https://reqres.in/api/users`, {
+    axiosWrapper.post(`/users`, {
       user,
     }),
-  deleteUser: (id: number) => axios.delete(`https://reqres.in/api/users/${id}`),
+  deleteUser: (id: number) => axiosWrapper.delete(`/users/${id}`),
 };
