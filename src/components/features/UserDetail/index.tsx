@@ -16,12 +16,19 @@ const UserDetail: React.FC<IUserDetail> = ({
   onClearUserDetail,
   queryParams,
 }) => {
-  React.useEffect(() => {
+  const runFetch = React.useCallback(() => {
     onFetchUser(queryParams.id)
+  }, [onFetchUser, queryParams])
+
+  React.useEffect(() => {
+    runFetch()
+  }, [runFetch])
+
+  React.useEffect(() => {
     return () => {
       onClearUserDetail()
     }
-  }, [])
+  }, [onClearUserDetail])
 
   return (
     <div className={styles.container}>
