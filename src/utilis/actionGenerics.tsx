@@ -1,7 +1,7 @@
 export interface ActionType<T = any> {
-  type: T;
+  type: T
 }
 
 export interface AnyAction extends ActionType {
-  [restProps: string]: any;
+  [restProps: string]: any
 }

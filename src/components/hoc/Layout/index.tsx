@@ -1,22 +1,23 @@
-import React from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import UserList from "components/containers/UserList";
-import UserDetail from "components/containers/UserDetail";
-import { RouteComponentProps } from "react-router";
+import React from "react"
+import { Route, Switch, withRouter } from "react-router-dom"
+import UserList from "components/containers/UserList"
+import UserDetail from "components/containers/UserDetail"
+import { RouteComponentProps } from "react-router"
 
 class Layout extends React.PureComponent<RouteComponentProps> {
   render() {
+    const { children } = this.props
     return (
-      <React.Fragment>
-        {this.props.children}
+      <>
+        {children}
         <Switch>
-          <Route exact={true} path="/" component={UserList} />
-          <Route exact={true} path="/list" component={UserList} />
-          <Route exact={true} path="/detail" component={UserDetail} />
+          <Route exact path="/" component={UserList} />
+          <Route exact path="/list" component={UserList} />
+          <Route exact path="/detail" component={UserDetail} />
         </Switch>
-      </React.Fragment>
-    );
+      </>
+    )
   }
 }
 
-export default withRouter(Layout);
+export default withRouter(Layout)

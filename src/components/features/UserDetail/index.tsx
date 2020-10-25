@@ -1,13 +1,13 @@
-import React from "react";
-import { IUser } from "store/users/models";
-import withQuery from "components/hoc/withQuery";
-import styles from "./userDetail.module.scss";
+import React from "react"
+import { IUser } from "store/users/models"
+import withQuery from "components/hoc/withQuery"
+import styles from "./userDetail.module.scss"
 
 interface IUserDetail {
-  userDetail: IUser;
-  onFetchUser: (id: number) => void;
-  onClearUserDetail: () => void;
-  queryParams: any;
+  userDetail: IUser
+  onFetchUser: (id: number) => void
+  onClearUserDetail: () => void
+  queryParams: any
 }
 
 const UserDetail: React.FC<IUserDetail> = ({
@@ -17,11 +17,11 @@ const UserDetail: React.FC<IUserDetail> = ({
   queryParams,
 }) => {
   React.useEffect(() => {
-    onFetchUser(queryParams.id);
+    onFetchUser(queryParams.id)
     return () => {
-      onClearUserDetail();
-    };
-  }, []);
+      onClearUserDetail()
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -30,7 +30,7 @@ const UserDetail: React.FC<IUserDetail> = ({
       <span>Last Name: {userDetail.last_name}</span>
       <span>Email: {userDetail.email}</span>
     </div>
-  );
-};
+  )
+}
 
-export default withQuery(UserDetail);
+export default withQuery(UserDetail)

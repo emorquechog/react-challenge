@@ -1,4 +1,4 @@
-export enum UsersActionType {
+enum UsersActionType {
   GET_USERS_INITIAL = "GET_USERS_INITIAL",
   GET_USERS_SUCCESS = "GET_USERS_SUCCESS",
   GET_USERS_ERROR = "GET_USERS_ERROR",
@@ -18,3 +18,5 @@ export enum UsersActionType {
   DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS",
   DELETE_USER_ERROR = "DELETE_USER_ERROR",
 }
+
+export default UsersActionType

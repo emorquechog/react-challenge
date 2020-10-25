@@ -1,3 +1,3 @@
 export type ReadonlyNullable<T> = {
-  readonly [K in keyof T]: T[K];
-};
+  readonly [K in keyof T]: T[K]
+}

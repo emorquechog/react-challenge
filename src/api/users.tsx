@@ -1,13 +1,13 @@
-import { AxiosPromise } from "axios";
-import { axiosWrapper } from "./index";
-import { IUser } from "store/users/models";
+import { AxiosPromise } from "axios"
+import { IUser } from "store/users/models"
+import { axiosWrapper } from "./index"
 
 export interface IApiUsers {
-  getUsers: () => AxiosPromise<any>;
-  getUser: (id: number) => AxiosPromise<any>;
-  updateUser: (user: IUser) => AxiosPromise<any>;
-  createUser: (user: IUser) => AxiosPromise<any>;
-  deleteUser: (id: number) => AxiosPromise<any>;
+  getUsers: () => AxiosPromise<any>
+  getUser: (id: number) => AxiosPromise<any>
+  updateUser: (user: IUser) => AxiosPromise<any>
+  createUser: (user: IUser) => AxiosPromise<any>
+  deleteUser: (id: number) => AxiosPromise<any>
 }
 
 export default {
@@ -18,8 +18,8 @@ export default {
       user,
     }),
   createUser: (user: IUser) =>
-    axiosWrapper.post(`/users`, {
+    axiosWrapper.post("/users", {
       user,
     }),
   deleteUser: (id: number) => axiosWrapper.delete(`/users/${id}`),
-};
+}

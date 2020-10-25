@@ -1,57 +1,68 @@
-import React from "react";
-import AddIcon from "@material-ui/icons/Add";
-import { IUser } from "store/users/models";
-import Card from "components/UI/Card";
-import AddUser from "./Add";
-import EditUser from "./Edit";
-import styles from "./userList.module.scss";
+import React from "react"
+import AddIcon from "@material-ui/icons/Add"
+import { IUser } from "store/users/models"
+import Card from "components/UI/Card"
+import AddUser from "./Add"
+import EditUser from "./Edit"
+import styles from "./userList.module.scss"
 
 interface IUserList {
-  userList: IUser[];
-  onFetchUsers: () => void;
-  onCreateUser: (user: IUser) => void;
-  onUpdateUser: (user: IUser) => void;
-  onDeleteUser: (id: number) => void;
+  userList: IUser[]
+  onFetchUsers: () => void
+  onCreateUser: (user: IUser) => void
+  onUpdateUser: (user: IUser) => void
+  onDeleteUser: (id: number) => void
 }
 
-class UserList extends React.Component<IUserList> {
-  state = {
-    openDialog: false,
-    openEditDialog: false,
-    userEditable: {
-      id: 0,
-      email: "",
-      first_name: "",
-      last_name: "",
-      avatar: "",
-    },
-  };
+interface IUserState {
+  openDialog: boolean
+  openEditDialog: boolean
+  userEditable: IUser
+}
+
+class UserList extends React.Component<IUserList, IUserState> {
+  constructor(props: IUserList) {
+    super(props)
+    this.state = {
+      openDialog: false,
+      openEditDialog: false,
+      userEditable: {
+        id: 0,
+        email: "",
+        first_name: "",
+        last_name: "",
+        avatar: "",
+      },
+    }
+  }
 
   componentDidMount() {
-    const { onFetchUsers } = this.props;
-    onFetchUsers();
+    const { onFetchUsers } = this.props
+    onFetchUsers()
   }
+
   handleOpenDialog = (isOpen: boolean) => {
     this.setState({
       openDialog: isOpen,
-    });
-  };
+    })
+  }
 
   handleEditDialog = (user: IUser) => {
     this.setState({
       openEditDialog: true,
       userEditable: user,
-    });
-  };
+    })
+  }
 
   handleEditDialogClose = () => {
     this.setState({
       openEditDialog: false,
-    });
-  };
+    })
+  }
 
   render() {
-    const { userList, onCreateUser, onDeleteUser, onUpdateUser } = this.props;
+    const { userList, onCreateUser, onDeleteUser, onUpdateUser } = this.props
+    const { openDialog, openEditDialog, userEditable } = this.state
     return (
       <div className={styles.container}>
         {userList.map((user) => (
@@ -62,22 +73,22 @@ class UserList extends React.Component<IUserList> {
           />
         ))}
         <div className={styles.addButton}>
-          <AddIcon onClick={() => this.handleOpenDialog(true)}></AddIcon>
+          <AddIcon onClick={() => this.handleOpenDialog(true)} />
           <AddUser
-            openDialog={this.state.openDialog}
+            openDialog={openDialog}
             onCloseDialog={this.handleOpenDialog}
             onAcceptPromp={onCreateUser}
-          ></AddUser>
+          />
           <EditUser
-            openDialog={this.state.openEditDialog}
+            openDialog={openEditDialog}
             onCloseDialog={this.handleEditDialogClose}
             onAcceptPromp={onUpdateUser}
-            user={this.state.userEditable}
-          ></EditUser>
+            user={userEditable}
+          />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default UserList;
+export default UserList

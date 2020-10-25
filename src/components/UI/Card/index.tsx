@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { IUser } from "store/users/models";
-import styles from "./card.module.scss";
+import React from "react"
+import { Link } from "react-router-dom"
+import EditIcon from "@material-ui/icons/Edit"
+import DeleteIcon from "@material-ui/icons/Delete"
+import { IUser } from "store/users/models"
+import styles from "./card.module.scss"
 
 interface IUserList {
-  user: IUser;
-  onClickEdit: () => void;
-  onClickDelete: () => void;
+  user: IUser
+  onClickEdit: () => void
+  onClickDelete: () => void
 }
 
 const Card: React.FC<IUserList> = ({ user, onClickEdit, onClickDelete }) => {
@@ -23,12 +23,12 @@ const Card: React.FC<IUserList> = ({ user, onClickEdit, onClickDelete }) => {
         <span>{`${user.first_name} ${user.last_name}`}</span>
         <span>{user.email}</span>
         <div>
-          <EditIcon onClick={onClickEdit}></EditIcon>
-          <DeleteIcon onClick={onClickDelete}></DeleteIcon>
+          <EditIcon onClick={onClickEdit} />
+          <DeleteIcon onClick={onClickDelete} />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

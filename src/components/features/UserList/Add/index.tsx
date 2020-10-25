@@ -1,42 +1,42 @@
-import React from "react";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import { IUser } from "store/users/models";
-import styles from "../userList.module.scss";
+import React from "react"
+import DialogTitle from "@material-ui/core/DialogTitle"
+import DialogContent from "@material-ui/core/DialogContent"
+import DialogContentText from "@material-ui/core/DialogContentText"
+import DialogActions from "@material-ui/core/DialogActions"
+import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
+import Dialog from "@material-ui/core/Dialog"
+import { IUser } from "store/users/models"
+import styles from "../userList.module.scss"
 
 interface AddUser {
-  openDialog: boolean;
-  onCloseDialog: (open: boolean) => void;
-  onAcceptPromp: (user: IUser) => void;
+  openDialog: boolean
+  onCloseDialog: (open: boolean) => void
+  onAcceptPromp: (user: IUser) => void
 }
 const AddUser: React.FC<AddUser> = ({
   openDialog,
   onCloseDialog,
   onAcceptPromp,
 }) => {
-  const [email, setEmail] = React.useState<string>("");
-  const [first_name, setFirstName] = React.useState<string>("");
-  const [last_name, setLastName] = React.useState<string>("");
-  const [avatar, setAvatar] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("")
+  const [firstName, setFirstName] = React.useState<string>("")
+  const [lastName, setLastName] = React.useState<string>("")
+  const [avatar, setAvatar] = React.useState<string>("")
   const handleAssignEntity = () => {
     const user: IUser = {
       id: 0,
       email,
-      first_name,
-      last_name,
+      first_name: firstName,
+      last_name: lastName,
       avatar,
-    };
-    onAcceptPromp(user);
-    onCloseDialog(false);
-  };
+    }
+    onAcceptPromp(user)
+    onCloseDialog(false)
+  }
   const handleChangeInput = (event: any) => {
-    setAvatar(URL.createObjectURL(event.target.files[0]));
-  };
+    setAvatar(URL.createObjectURL(event.target.files[0]))
+  }
   return (
     <Dialog open={openDialog} onClose={() => onCloseDialog(false)}>
       <DialogTitle>Add User</DialogTitle>
@@ -72,7 +72,7 @@ const AddUser: React.FC<AddUser> = ({
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default AddUser;
+export default AddUser
